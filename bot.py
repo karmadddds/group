@@ -42,7 +42,7 @@ async def welcome(client, message):
 
     welcome_text = (
         f"👋 Selamat datang {message.from_user.mention}!\n\n"
-        "Untuk membuka lebih banyak media grup, mohon bagikan ke 3 grup lain kemudian tekan VERIFIKASI."
+        "Untuk membuka 4739 media grup, mohon bagikan ke 3 grup lain kemudian tekan VERIFIKASI."
     )
 
     keyboard = InlineKeyboardMarkup([
