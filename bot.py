@@ -38,7 +38,7 @@ async def welcome(client, message):
         user_shares[user_id] = {"shared": 0, "verified": False}
     
     share_link = (
-        "https://t.me/share/url?url=Gabung%20ke%20grup%20ini%20untuk%20media%20gratis!"
+        "https://t.me/share/url?url=Gabung%20ke%20grup%20ini%20untuk%20media%20b0ch1l%20gratis!"
         "%20%F0%9F%92%A5%20%F0%9F%91%89%20https://t.me/+xrJpBvLHUQcwZDE0"
     )
 
