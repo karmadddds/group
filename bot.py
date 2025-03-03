@@ -14,9 +14,8 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 bot = Client("verification_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-
 USER_DATA_FILE = "user_data.json"
-WELCOME_IMAGE_URL = "image.jpg"
+WELCOME_IMAGE_PATH = "image.jpg"  # Pastikan file ada di direktori yang benar
 
 # Load user data
 try:
@@ -37,7 +36,12 @@ async def welcome(client, message):
 
     if user_id not in user_shares:
         user_shares[user_id] = {"shared": 0, "verified": False}
-      share_link = "https://t.me/share/url?url=Gabung%20ke%20grup%20ini%20untuk%20media%20gratis!%20%F0%9F%92%A5%20%F0%9F%91%89%20https://t.me/+xrJpBvLHUQcwZDE0"    
+    
+    # Link share yang benar
+    share_link = (
+        "https://t.me/share/url?url=Gabung%20ke%20grup%20ini%20untuk%20media%20gratis!"
+        "%20%F0%9F%92%A5%20%F0%9F%91%89%20https://t.me/+xrJpBvLHUQcwZDE0"
+    )
 
     welcome_text = (
         f"👋 Selamat datang {message.from_user.mention}!\n\n"
@@ -50,16 +54,16 @@ async def welcome(client, message):
                               callback_data=f"verify_{user_id}")]
     ])
 
-    # Kirim pesan hanya ke user yang join
-    msg = await message.reply_photo(
-        photo=WELCOME_IMAGE_URL,
-        caption=welcome_text,
-        reply_markup=keyboard
-    )
-
-    # Hapus pesan setelah 30 detik agar tidak mengganggu grup
-    await asyncio.sleep(30)
-    await msg.delete()
+    try:
+        # Kirim pesan hanya ke user yang join (Private Message)
+        await client.send_photo(
+            chat_id=user_id,
+            photo=WELCOME_IMAGE_PATH,
+            caption=welcome_text,
+            reply_markup=keyboard
+        )
+    except Exception as e:
+        print(f"Error mengirim pesan ke {user_id}: {e}")
 
     save_user_data()
 
