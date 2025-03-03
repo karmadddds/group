@@ -37,7 +37,6 @@ async def welcome(client, message):
     if user_id not in user_shares:
         user_shares[user_id] = {"shared": 0, "verified": False}
     
-    # Link share yang benar
     share_link = (
         "https://t.me/share/url?url=Gabung%20ke%20grup%20ini%20untuk%20media%20gratis!"
         "%20%F0%9F%92%A5%20%F0%9F%91%89%20https://t.me/+xrJpBvLHUQcwZDE0"
@@ -54,16 +53,16 @@ async def welcome(client, message):
                               callback_data=f"verify_{user_id}")]
     ])
 
-    try:
-        # Kirim pesan hanya ke user yang join (Private Message)
-        await client.send_photo(
-            chat_id=user_id,
-            photo=WELCOME_IMAGE_PATH,
-            caption=welcome_text,
-            reply_markup=keyboard
-        )
-    except Exception as e:
-        print(f"Error mengirim pesan ke {user_id}: {e}")
+    # **Kirim pesan ke grup sebagai reply, tapi hanya user yang join yang bisa melihatnya**
+    msg = await message.reply_photo(
+        photo=WELCOME_IMAGE_PATH,
+        caption=welcome_text,
+        reply_markup=keyboard
+    )
+
+    # Hapus pesan setelah 30 detik agar tidak mengganggu grup
+    await asyncio.sleep(30)
+    await msg.delete()
 
     save_user_data()
 
