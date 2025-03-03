@@ -16,7 +16,7 @@ bot = Client("verification_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT
 
 
 USER_DATA_FILE = "user_data.json"
-WELCOME_IMAGE_URL = "https://raw.githubusercontent.com/karmadddds/group/refs/heads/main/photo_5920243059394725773_y.jpg"
+WELCOME_IMAGE_URL = "image.jpg"
 
 # Load user data
 try:
