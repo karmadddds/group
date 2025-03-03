@@ -37,9 +37,7 @@ async def welcome(client, message):
 
     if user_id not in user_shares:
         user_shares[user_id] = {"shared": 0, "verified": False}
-    
-    share_link = "https://t.me/share/url?url=https://t.me/+tN_uxvAoX8swYTVk&text=🔥%20Join%20grup%20b00ch1l%20gratis!%0A💥%20Seru%20dan%20asik%20disini!%0A👉%20Klik%20link%20di%20bawah%20ini%20untuk%20join!
-"
+      share_link = "https://t.me/share/url?url=Gabung%20ke%20grup%20ini%20untuk%20media%20gratis!%20%F0%9F%92%A5%20%F0%9F%91%89%20https://t.me/+xrJpBvLHUQcwZDE0"    
 
     welcome_text = (
         f"👋 Selamat datang {message.from_user.mention}!\n\n"
